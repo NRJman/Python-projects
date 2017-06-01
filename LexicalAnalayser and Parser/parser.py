@@ -7,7 +7,7 @@ print()
 print()
 
 print(lexems)
-error_table={"Wrong delimiter":-1, "Wrong key_word":-2, "No such identifier":-3, "Wrong integer":-4}
+error_table={"Wrong delimiter":-1, "Wrong key_word":-2, "No such identifier":-3, "Wrong integer":-4, "Dot expected, but end of array found":-5}
 
 
 def takeWord(where, what):
@@ -310,16 +310,20 @@ def program():
             i += 1
             i = block(i)
             i += 1
-            if int(lexems[i]) == 46:
-                tree.add(takeWord(delimitersCodes, int(lexems[i])))
-            elif int(lexems[i]) == '':
-                fail(-1)
-                tree.current_element = tree.current_element.parent_element
-                i += 1
+            print(len(lexems))
+            if i == len(lexems) - 1:
+                fail(-5)
             else:
-                fail(-1)
-                tree.current_element = tree.current_element.parent_element
-                i += 1
+                if int(lexems[i]) == 46:
+                    tree.add(takeWord(delimitersCodes, int(lexems[i])))
+                elif int(lexems[i]) == '':
+                    fail(-1)
+                    tree.current_element = tree.current_element.parent_element
+                    i += 1
+                else:
+                    fail(-1)
+                    tree.current_element = tree.current_element.parent_element
+                    i += 1
         else:
             fail(-1)
             tree.current_element = tree.current_element.parent_element

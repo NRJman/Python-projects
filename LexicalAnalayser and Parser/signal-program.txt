@@ -1,5 +1,16 @@
 PROGRAM MYPROG;
 
+VAR
+    FIRST, SECOND, THIRD, FOURTH:
+    INTEGER, FLOAT, [1..5], MISTAAAKE;
+
+CONST
+    a = 10;
+    b = 11;
+    c = 12;
+
+(*comment*)
+
 BEGIN
 
-END
+END.

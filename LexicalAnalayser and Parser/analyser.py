@@ -59,7 +59,10 @@ while buf != '':
             if buf != ' ':
                 lexem = lexem + buf
             buf = file.read(1)
-            if not 65 <= ord(buf) <= 90 or 97 <= ord(buf) <= 122 or isNumber(buf):
+            if buf != '':
+                if not 65 <= ord(buf) <= 90 or 97 <= ord(buf) <= 122 or isNumber(buf):
+                    break
+            else:
                 break
         if isKeyWord(lexem):
             if lexem not in kWArray:
