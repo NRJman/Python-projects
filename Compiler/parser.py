@@ -27,7 +27,8 @@ def procedureIdentifier(i):
         tree.add(takeWord(identifierCodes, int(lexems[i])))
         tree.current_element = tree.current_element.parent_element
     else:
-        fail(-3)
+        print("ERROR:: THERE IS NO SUCH IDENTIFIER.")
+        exit()
     tree.current_element = tree.current_element.parent_element
     tree.current_element = tree.current_element.parent_element
 
@@ -42,7 +43,13 @@ def variableIdentifier(i):
         tree.current_element = tree.current_element.parent_element
         i += 1
     else:
-        fail(-3)
+        print("ERROR:: variable name can not be such as key word!")
+        exit()
+        print("ERROR:: THERE IS NO SUCH IDENTIFIER.")
+        exit()
+        i += 1
+        tree.current_element = tree.current_element.parent_element
+        tree.current_element = tree.current_element.parent_element
     return i
 
 
@@ -74,10 +81,12 @@ def range(i):
             tree.current_element = tree.current_element.parent_element
             tree.current_element = tree.current_element.parent_element
         else:
-            fail(-1)
+            print("ERROR:: WRONG DELIMITER.")
+            exit()
             tree.current_element = tree.current_element.parent_element
     else:
-        fail(-1)
+        print("ERROR:: WRONG DELIMITER.")
+        exit()
         tree.current_element = tree.current_element.parent_element
     return i
 
@@ -102,11 +111,13 @@ def attribute(i):
             tree.current_element = tree.current_element.parent_element
             i += 1
         else:
-            fail(-1)
+            print("ERROR:: WRONG DELIMITER.")
+            exit()
             tree.current_element = tree.current_element.parent_element
             i += 1
     else:
-        fail(-3)
+        print("ERROR:: THERE IS NO SUCH IDENTIFIER.")
+        exit()
         tree.current_element = tree.current_element.parent_element
         i += 1
     return i
@@ -156,11 +167,13 @@ def declaration(i):
             tree.current_element = tree.current_element.parent_element
             tree.current_element = tree.current_element.parent_element
         else:
-            fail(-1)
+            print("ERROR:: WRONG DELIMITER.")
+            exit()
             tree.current_element = tree.current_element.parent_element
             i += 1
     else:
-        fail(-1)
+        print("ERROR:: WRONG DELIMITER.")
+        exit()
         tree.current_element = tree.current_element.parent_element
         i += 1
     return i
@@ -185,13 +198,15 @@ def variableDeclarations(i):
         tree.add('<empty>')
         tree.current_element = tree.current_element.parent_element
     else:
-        fail(-2)
+        print("ERROR:: WRONG KEYWORD.")
+        exit()
         tree.current_element = tree.current_element.parent_element
         i += 1
     return i
 
+
 def constantIdentifier(i):
-    tree.add('constantIdentifier')
+    tree.add('constant-identifier')
     tree.add('identifier')
     tree.add(takeWord(identifierCodes, int(lexems[i])))
     tree.current_element = tree.current_element.parent_element
@@ -227,10 +242,12 @@ def constantDeclaration(i):
             tree.current_element = tree.current_element.parent_element
             tree.current_element = tree.current_element.parent_element
         else:
-            fail(-1)
+            print("ERROR:: WRONG DELIMITER.")
+            exit()
             i += 1
     else:
-        fail(-1)
+        print("ERROR:: WRONG DELIMITER.")
+        exit()
         i += 1
     return i
 
@@ -249,7 +266,7 @@ def constantDeclarationsList(i):
 
 
 def constantDeclarations(i):
-    tree.add('constantDeclarations')
+    tree.add('constant-declarations')
     tree.add('CONST')
     tree.current_element = tree.current_element.parent_element
     i = constantDeclarationsList(i);
@@ -285,11 +302,13 @@ def block(i):
             tree.current_element = tree.current_element.parent_element
             tree.current_element = tree.current_element.parent_element
         else:
-            fail(-2)
+            print("ERROR:: WRONG KEYWORD.")
+            exit()
             tree.current_element = tree.current_element.parent_element
             i += 1
     else:
-        fail(-2)
+        print("ERROR:: WRONG KEYWORD.")
+        exit()
         tree.current_element = tree.current_element.parent_element
         i += 1
     return i
@@ -300,6 +319,7 @@ def program():
     i = 0
     if int(lexems[i]) == 401:
         tree.add(takeWord(keyWordsCodes, int(lexems[i])))
+        print("-------", tree.current_element, "-----------")
         tree.current_element = tree.current_element.parent_element
         i += 1
         procedureIdentifier(i)
@@ -312,26 +332,33 @@ def program():
             i += 1
             print(len(lexems))
             if i == len(lexems) - 1:
-                fail(-5)
+                print("ERROR:: DOT EXPECTED, BUT END OF ARRAY FOUND.")
+                exit()
             else:
                 if int(lexems[i]) == 46:
                     tree.add(takeWord(delimitersCodes, int(lexems[i])))
                 elif int(lexems[i]) == '':
-                    fail(-1)
+                    print("ERROR:: WRONG DELIMITER.")
+                    exit()
                     tree.current_element = tree.current_element.parent_element
                     i += 1
                 else:
-                    fail(-1)
+                    print("ERROR:: WRONG DELIMITER.")
+                    exit()
                     tree.current_element = tree.current_element.parent_element
                     i += 1
         else:
-            fail(-1)
+            print("ERROR:: WRONG DELIMITER.")
+            exit()
             tree.current_element = tree.current_element.parent_element
             i += 1
     else:
-        fail(-2)
+        print("ERROR:: WRONG KEYWORD.")
+        exit()
         tree.current_element = tree.current_element.parent_element
         i += 1
+    return tree
+
 
 program()
 tree.print_tree()

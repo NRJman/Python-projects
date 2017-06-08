@@ -75,7 +75,10 @@ while buf != '':
                 iArray.append(lexem)
                 identifierCodes[lexem] = iCode
                 iCode += 1
-            newFileString += str(iCode - 1) + ' '
+            if lexem in iArray:
+                newFileString += str(str(identifierCodes[lexem]) + ' ')
+            else:
+                newFileString += str(iCode - 1) + ' '
     elif buf == '(':
         buf = file.read(1)
         if buf == '':

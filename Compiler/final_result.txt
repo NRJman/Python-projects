@@ -1,0 +1,16 @@
+
+====================CODE=========================
+---MYPROG---
+DATA SEGMENT
+
+ONE    DW    ?
+TWO    DW    ?
+THREE        1, 2, 3, 4, 5
+a      DW    10
+b      DW    11
+c      DW    12
+
+DATA ENDS
+
+CODE SEGMENT
+CODE ENDS

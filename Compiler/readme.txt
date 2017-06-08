@@ -23,3 +23,12 @@ Analyzer which was developed in the laboratory "Development of the lexical analy
 full information needed to code generation;
 - forming listing program with input reports
 lexical and syntactic errors.
+
+
+
+3)
+1. Develop a code generator (GC) for the programming language SIGNAL.
+2. The program must provide:
+- Read parse trees and tables, created by parser
+- identify semantic errors;
+- code generation and/or construction of internal tables for code generation.
